@@ -1,0 +1,19 @@
+name: FRG Volume Hammer
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: # Allows you to start it manually
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - name: Install Dependencies
+        run: npm install @solana/web3.js bs58
+      - name: Run the Hammer
+        run: node hammer.js
